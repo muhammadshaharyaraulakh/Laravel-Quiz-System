@@ -21,4 +21,7 @@ Route::get('/logout', function () {
 Route::get('/categories', function () {
     return view('adminPages.categories');
 })->name('categories');
+Route::get('/categories', [AdminController::class, 'getCategories'])->name('categories');
+Route::post('/categories', [AdminController::class, 'addCategory'])->name('addCategory');
+Route::delete('/categories/{id}', [AdminController::class, 'deleteCategory'])->name('deleteCategory');
 
