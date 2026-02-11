@@ -10,4 +10,15 @@ Route::get('/login', function () {
     return view('login');
 })->name('login');
 Route::post('/login', [AdminController::class, 'login'])->name('login');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
+Route::get('/logout', function () {
+    Session::forget('admin');
+    Session::forget('admin_name');
+    return redirect()->route('login');
+})->name('logout');
+Route::get('/categories', function () {
+    return view('adminPages.categories');
+})->name('categories');
 
