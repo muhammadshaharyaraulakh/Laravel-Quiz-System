@@ -29,11 +29,14 @@
                     type="email"
                     id="email"
                     name="email"
-                    required
+                    value="{{ old('email') }}"
                     autofocus
                     class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-200 ease-in-out placeholder-slate-400"
                     placeholder="name@gmail.com"
                 >
+                @error('email')
+                    <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                @enderror
             </div>
 
             <div>
@@ -44,11 +47,17 @@
                     type="password"
                     id="password"
                     name="password"
-                    required
+                    value="{{ old('password') }}"
                     class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-lg text-slate-900 text-sm focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition duration-200 ease-in-out placeholder-slate-400"
                     placeholder="Enter your password"
                 >
+                @error('password')
+                    <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+                @enderror
             </div>
+            @error('credentials')
+                <p class="text-sm text-red-600 mt-1">{{ $message }}</p>
+            @enderror
 <div class="text-right mt-1.5">
     <a href="#"
        class="text-xs font-medium text-indigo-600 hover:text-indigo-500 transition-colors">
