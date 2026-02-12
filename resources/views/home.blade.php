@@ -87,7 +87,7 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="flex items-center justify-between mb-8">
             <h2 class="text-2xl font-bold text-slate-900 border-l-4 border-indigo-500 pl-3">Browse Categories</h2>
-            <a href="#" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center gap-1 transition-colors group">
+            <a href="{{route('categories')}}" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center gap-1 transition-colors group">
                 View All 
                 <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
             </a>
@@ -96,8 +96,8 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
 
 
-    <a href="#" class="group relative bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-        <div class="absolute top-6 right-6 bg-blue-50 text-blue-600 text-xs font-bold px-2 py-1 rounded">150 Quizzes</div>
+    <a href="{{route('quizzes', $categories[0]->id)}}" class="group relative bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+        <div class="absolute top-6 right-6 bg-blue-50 text-blue-600 text-xs font-bold px-2 py-1 rounded">{{$categories[0]->quizzes->count()}} Quizzes</div>
         <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-blue-400 to-yellow-400 flex items-center justify-center text-white mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
             <i class="fa-brands fa-python text-2xl"></i>
         </div>
@@ -110,12 +110,12 @@
     </a>
 
    
-    <a href="#" class="group relative bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-        <div class="absolute top-6 right-6 bg-yellow-50 text-yellow-600 text-xs font-bold px-2 py-1 rounded">180 Quizzes</div>
+    <a href="{{route('quizzes', $categories[1]->id)}}" class="group relative bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+        <div class="absolute top-6 right-6 bg-yellow-50 text-yellow-600 text-xs font-bold px-2 py-1 rounded">{{$categories[1]->quizzes->count()}} Quizzes</div>
         <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center text-white mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
             <i class="fa-brands fa-js text-2xl"></i>
         </div>
-        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-yellow-600 transition-colors">JavaScript</h3>
+        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-yellow-600 transition-colors">{{$categories[1]->name}}</h3>
         <p class="text-sm text-slate-500 mb-4 line-clamp-2">Frontend, Backend, Node.js and Full Stack Development.</p>
         <div class="w-full bg-slate-100 rounded-full h-1.5 mb-2 overflow-hidden">
             <div class="bg-yellow-500 h-1.5 rounded-full w-full"></div>
@@ -123,12 +123,12 @@
         <p class="text-xs text-slate-400">Popularity: Extremely High</p>
     </a>
 
-    <a href="#" class="group relative bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-        <div class="absolute top-6 right-6 bg-red-50 text-red-600 text-xs font-bold px-2 py-1 rounded">140 Quizzes</div>
+    <a href="{{route('quizzes', $categories[2]->id)}}" class="group relative bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+        <div class="absolute top-6 right-6 bg-red-50 text-red-600 text-xs font-bold px-2 py-1 rounded">{{$categories[2]->quizzes->count()}} Quizzes</div>
         <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-red-400 to-red-600 flex items-center justify-center text-white mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
             <i class="fa-brands fa-java text-2xl"></i>
         </div>
-        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-red-600 transition-colors">Java</h3>
+        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-red-600 transition-colors">{{$categories[2]->name}}</h3>
         <p class="text-sm text-slate-500 mb-4 line-clamp-2">Enterprise Apps, Android Development and Backend Systems.</p>
         <div class="w-full bg-slate-100 rounded-full h-1.5 mb-2 overflow-hidden">
             <div class="bg-red-500 h-1.5 rounded-full w-4/5"></div>
@@ -137,12 +137,12 @@
     </a>
 
 
-    <a href="#" class="group relative bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-        <div class="absolute top-6 right-6 bg-indigo-50 text-indigo-600 text-xs font-bold px-2 py-1 rounded">100 Quizzes</div>
+    <a href="{{route('quizzes', $categories[3]->id)}}" class="group relative bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+        <div class="absolute top-6 right-6 bg-indigo-50 text-indigo-600 text-xs font-bold px-2 py-1 rounded">{{$categories[3]->quizzes->count()}} Quizzes</div>
         <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-indigo-400 to-blue-600 flex items-center justify-center text-white mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
             <span class="text-xl font-bold">C++</span>
         </div>
-        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors">C++</h3>
+        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors">{{$categories[3]->name}}</h3>
         <p class="text-sm text-slate-500 mb-4 line-clamp-2">Game Development, System Programming and Performance Apps.</p>
         <div class="w-full bg-slate-100 rounded-full h-1.5 mb-2 overflow-hidden">
             <div class="bg-indigo-500 h-1.5 rounded-full w-3/4"></div>
@@ -150,13 +150,13 @@
         <p class="text-xs text-slate-400">Popularity: High</p>
     </a>
 
-    <!-- C# -->
-    <a href="#" class="group relative bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-        <div class="absolute top-6 right-6 bg-purple-50 text-purple-600 text-xs font-bold px-2 py-1 rounded">95 Quizzes</div>
+    
+    <a href="{{route('quizzes', $categories[4]->id)}}" class="group relative bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+        <div class="absolute top-6 right-6 bg-purple-50 text-purple-600 text-xs font-bold px-2 py-1 rounded">{{$categories[4]->quizzes->count()}} Quizzes</div>
         <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center text-white mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
             <span class="text-xl font-bold">C#</span>
         </div>
-        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">C#</h3>
+        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-purple-600 transition-colors">{{$categories[4]->name}}</h3>
         <p class="text-sm text-slate-500 mb-4 line-clamp-2">.NET Development, Unity Games and Enterprise Apps.</p>
         <div class="w-full bg-slate-100 rounded-full h-1.5 mb-2 overflow-hidden">
             <div class="bg-purple-500 h-1.5 rounded-full w-2/3"></div>
@@ -164,13 +164,13 @@
         <p class="text-xs text-slate-400">Popularity: Medium</p>
     </a>
 
-    <!-- PHP -->
-    <a href="#" class="group relative bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-        <div class="absolute top-6 right-6 bg-slate-50 text-slate-600 text-xs font-bold px-2 py-1 rounded">120 Quizzes</div>
+    
+    <a href="{{route('quizzes', $categories[5]->id)}}" class="group relative bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+        <div class="absolute top-6 right-6 bg-slate-50 text-slate-600 text-xs font-bold px-2 py-1 rounded">{{$categories[5]->quizzes->count()}} Quizzes</div>
         <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-slate-400 to-slate-600 flex items-center justify-center text-white mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
             <i class="fa-brands fa-php text-2xl"></i>
         </div>
-        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-slate-600 transition-colors">PHP</h3>
+        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-slate-600 transition-colors">{{$categories[5]->name}}</h3>
         <p class="text-sm text-slate-500 mb-4 line-clamp-2">Laravel, WordPress and Backend Web Development.</p>
         <div class="w-full bg-slate-100 rounded-full h-1.5 mb-2 overflow-hidden">
             <div class="bg-slate-500 h-1.5 rounded-full w-3/4"></div>
@@ -178,13 +178,13 @@
         <p class="text-xs text-slate-400">Popularity: Stable</p>
     </a>
 
-    <!-- Go -->
-    <a href="#" class="group relative bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-        <div class="absolute top-6 right-6 bg-cyan-50 text-cyan-600 text-xs font-bold px-2 py-1 rounded">70 Quizzes</div>
+    
+    <a href="{{route('quizzes', $categories[6]->id)}}" class="group relative bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+        <div class="absolute top-6 right-6 bg-cyan-50 text-cyan-600 text-xs font-bold px-2 py-1 rounded">{{$categories[6]->quizzes->count()}} Quizzes</div>
         <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-cyan-400 to-blue-400 flex items-center justify-center text-white mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
             <span class="text-xl font-bold">Go</span>
         </div>
-        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-cyan-600 transition-colors">Go</h3>
+        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-cyan-600 transition-colors">{{$categories[6]->name}}</h3>
         <p class="text-sm text-slate-500 mb-4 line-clamp-2">Cloud Computing, Microservices and DevOps Tools.</p>
         <div class="w-full bg-slate-100 rounded-full h-1.5 mb-2 overflow-hidden">
             <div class="bg-cyan-500 h-1.5 rounded-full w-1/2"></div>
@@ -192,13 +192,13 @@
         <p class="text-xs text-slate-400">Popularity: Growing</p>
     </a>
 
-    <!-- Rust -->
-    <a href="#" class="group relative bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
-        <div class="absolute top-6 right-6 bg-orange-50 text-orange-600 text-xs font-bold px-2 py-1 rounded">60 Quizzes</div>
+    
+    <a href="{{route('quizzes', $categories[7]->id)}}" class="group relative bg-white rounded-2xl p-6 shadow-sm border border-slate-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300">
+        <div class="absolute top-6 right-6 bg-orange-50 text-orange-600 text-xs font-bold px-2 py-1 rounded">{{$categories[7]->quizzes->count()}} Quizzes</div>
         <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-orange-400 to-amber-600 flex items-center justify-center text-white mb-4 shadow-lg group-hover:scale-110 transition-transform duration-300">
             <span class="text-xl font-bold">Rust</span>
         </div>
-        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-orange-600 transition-colors">Rust</h3>
+        <h3 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-orange-600 transition-colors">{{$categories[7]->name}}</h3>
         <p class="text-sm text-slate-500 mb-4 line-clamp-2">System Programming, Performance and Memory Safety.</p>
         <div class="w-full bg-slate-100 rounded-full h-1.5 mb-2 overflow-hidden">
             <div class="bg-orange-500 h-1.5 rounded-full w-1/2"></div>

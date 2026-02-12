@@ -16,5 +16,14 @@ class UserController extends Controller
        $categroies = Category::all();
        return view('home', ['categories' => $categroies]);
     }
+    function displayQuizzes($id){
+        $quizzes = Quiz::where('category_id', $id)->get();
+        return view('userPages.quizzes', ['quizzes' => $quizzes]);
+    }
+    function displayCategories(){
+    $categories = Category::paginate(6);
+    return view('userPages.categories', compact('categories'));
+}
+
     
 }

@@ -42,4 +42,8 @@ Route::post('/editQuestion', [AdminController::class, 'EditQuestions'])
 
 Route::get('/home', [App\Http\Controllers\UserController::class, 'displayTopics'])->name('home');
 
+Route::get('/quizzes/{id}', [App\Http\Controllers\UserController::class, 'displayQuizzes'])->name('quizzes');
+
+Route::get('/categories', [App\Http\Controllers\UserController::class, 'displayCategories'])->name('categories');
+
 
