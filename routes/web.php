@@ -29,3 +29,10 @@ Route::view('/quizUI', 'adminPages.quiz')->name('quizUi');
 Route::post('/quiz', [AdminController::class, 'addQuiz'])->name('addQuiz');
 Route::post('/addQuestions', [AdminController::class, 'addQuestions'])->name('addQuestions');
 
+Route::get('/allQuizzes/{id}', [AdminController::class, 'getQuiz'])
+    ->name('allQuizzes');
+    Route::get('/quiz/{id}', [AdminController::class, 'getdetails'])
+    ->name('details');
+
+
+

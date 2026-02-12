@@ -169,5 +169,19 @@ function addQuestions(Request $request)
         return redirect()->route('dashboard');
     }
 }
+function getQuiz($id){
+    $allquizes = Quiz::where('category_id', $id)->get();
+    return view('adminPages.allQuizes',[
+        "allquizes" => $allquizes
+    ]);
+}
+function getdetails($id){
+    $quiz = Quiz::find($id);
+    $questions = Mcq::where('quiz_id', $id)->get();
+    return view('adminPages.singleQuiz',[
+        "quiz" => $quiz,
+        "questions" => $questions
+    ]);
 
+}
 }

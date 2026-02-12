@@ -84,16 +84,28 @@
                         <td class="px-4 py-3 whitespace-nowrap font-medium text-slate-800">{{ $category->name }}</td>
                         <td class="px-4 py-3 whitespace-nowrap text-slate-600">{{ $category->created_by ?? 'N/A' }}</td>
                         <td class="px-4 py-3 whitespace-nowrap text-center">
-                            <form method="POST" action="{{ route('deleteCategory', ['id' => $category->id]) }}"  class="inline-block">
-                                @csrf
-                                @method('DELETE')
-                                <button class="text-red-600 hover:text-red-800 transition cursor-pointer">
-                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                        <path stroke-linecap="round" stroke-linejoin="round" d="M6 7h12M9 7V4h6v3m-7 4v6m4-6v6m5-10H5l1 14h12l1-14z" />
-                                    </svg>
-                                </button>
-                            </form>
-                        </td>
+
+        
+        <a href="{{ route('allQuizzes', ['id' => $category->id]) }}"
+            class="bg-blue-600 text-white px-4 py-1.5 rounded-lg shadow-sm 
+                   hover:bg-blue-700 hover:shadow-md 
+                   transition duration-200 ease-in-out cursor-pointer text-sm font-medium">
+            View 
+        </a>
+
+    <form method="POST" action="{{ route('deleteCategory', ['id' => $category->id]) }}" class="inline-block ml-2">
+        @csrf
+        @method('DELETE')
+
+        <button 
+            class="bg-red-600 text-white px-4 py-1.5 rounded-lg shadow-sm 
+                   hover:bg-red-700 hover:shadow-md 
+                   transition duration-200 ease-in-out cursor-pointer text-sm font-medium">
+            Delete
+        </button>
+    </form>
+</td>
+
                     </tr>
                     @empty
                     <tr>
