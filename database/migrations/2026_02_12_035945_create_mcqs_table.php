@@ -19,8 +19,7 @@ return new class extends Migration
             $table->string('option3');  
             $table->string('option4');
             $table->string('answer');
-            $table->unsignedBigInteger('quiz_id');
-            $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');   
+            $table->foreign('quiz_id')->references('id')->on('quizzes')->onDelete('cascade');  
             $table->foreignId('category_id')->constrained('categories')->onDelete('cascade');
             $table->foreignId('admin_id')->constrained('admins')->onDelete('cascade');
             $table->timestamps();

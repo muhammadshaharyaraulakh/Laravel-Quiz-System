@@ -27,4 +27,5 @@ Route::delete('/categories/{id}', [AdminController::class, 'deleteCategory'])->n
 Route::get('/quiz', [AdminController::class, 'quiz'])->name('quiz');
 Route::view('/quizUI', 'adminPages.quiz')->name('quizUi');  
 Route::post('/quiz', [AdminController::class, 'addQuiz'])->name('addQuiz');
+Route::post('/addQuestions', [AdminController::class, 'addQuestions'])->name('addQuestions');
 
