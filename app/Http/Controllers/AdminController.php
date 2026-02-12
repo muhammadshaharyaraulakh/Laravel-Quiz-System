@@ -184,4 +184,63 @@ function getdetails($id){
     ]);
 
 }
+function deleteQuiz($id){
+    $quiz = Quiz::find($id);
+    $quiz->delete();
+    Session::flash('success', 'Quiz deleted successfully');
+    return redirect()->route('allQuizzes', ['id' => $quiz->category_id]);
+}
+function questionEdit($id){
+    $question = Mcq::find($id);
+    return view('adminPages.editQuestion',[
+        "question" => $question
+    ]);
+
+
+}
+function EditQuestions(Request $request){
+    $request->validate([
+        'question_id' => 'required|exists:mcqs,id',
+        'question' => 'required|string|max:255',
+        'option1' => 'required|string|max:255',
+        'option2' => 'required|string|max:255',
+        'option3' => 'required|string|max:255',
+        'option4' => 'required|string|max:255',
+        'answer' => 'required|in:option1,option2,option3,option4'
+    ]);
+    if(Mcq::where('question', $request->question)
+        ->where('id', '!=', $request->question_id)
+        ->exists()){
+        return back()
+            ->withErrors(['question' => 'Question already exists in this quiz'])
+            ->withInput();
+    }
+    if (
+        $request->option1 == $request->option2 || $request->option1 == $request->option3 || $request->option1 == $request->option4 ||
+        $request->option2 == $request->option3 || $request->option2 == $request->  option4 || 
+        $request->option3 == $request->option4
+    ) {
+        return back()
+            ->withErrors(['options' => 'Options must be unique'])       
+            ->withInput();
+    } 
+    $question_id = $request->question_id;
+    $question = Mcq::find($question_id);
+    $question->question = $request->question;
+    $question->option1 = $request->option1;
+    $question->option2 = $request->option2;
+    $question->option3 = $request->option3;
+    $question->option4 = $request->option4;
+    $question->answer = $request->answer;
+    $question->save();
+    return redirect()->route('details', ['id' => $question->quiz_id]);
+}
+
+function deleteQuestion($id){
+    $question = Mcq::find($id);
+    $quiz_id = $question->quiz_id;
+    $question->delete();
+    return redirect()->route('details', ['id' => $quiz_id]);
+
+}
 }

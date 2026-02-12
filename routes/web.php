@@ -31,8 +31,13 @@ Route::post('/addQuestions', [AdminController::class, 'addQuestions'])->name('ad
 
 Route::get('/allQuizzes/{id}', [AdminController::class, 'getQuiz'])
     ->name('allQuizzes');
+Route::delete('/quiz/{id}', [AdminController::class, 'deleteQuiz'])->name('deleteQuiz');
     Route::get('/quiz/{id}', [AdminController::class, 'getdetails'])
     ->name('details');
-
+Route::get('/editQuestion/{id}', [AdminController::class, 'questionEdit'])
+    ->name('editQuestion'); 
+Route::post('/editQuestion', [AdminController::class, 'EditQuestions'])
+    ->name('EditQuestions');
+    Route::delete('/questions/{id}', [AdminController::class, 'deleteQuestion'])->name('deleteQuestion');
 
 
