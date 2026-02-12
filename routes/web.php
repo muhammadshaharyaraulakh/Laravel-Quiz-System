@@ -24,4 +24,7 @@ Route::get('/categories', function () {
 Route::get('/categories', [AdminController::class, 'getCategories'])->name('categories');
 Route::post('/categories', [AdminController::class, 'addCategory'])->name('addCategory');
 Route::delete('/categories/{id}', [AdminController::class, 'deleteCategory'])->name('deleteCategory');
+Route::get('/quiz', [AdminController::class, 'quiz'])->name('quiz');
+Route::view('/quizUI', 'adminPages.quiz')->name('quizUi');  
+Route::post('/quiz', [AdminController::class, 'addQuiz'])->name('addQuiz');
 

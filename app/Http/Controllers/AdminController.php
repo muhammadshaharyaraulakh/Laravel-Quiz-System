@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Admin;
 use App\Models\Category;
+use App\Models\Quiz;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Hash;
 
@@ -64,5 +65,40 @@ class AdminController extends Controller
         $category->delete();
         Session::flash('success', 'Category deleted successfully');
         return redirect()->route('categories');
+    }
+    function quiz(){
+        $category = Category::all();
+        return view('adminPages.quiz',[
+            "categories" => $category
+        ]);
+    }
+    function addQuiz(Request $request){
+       $request->validate([
+        'quiz' => 'required|string|max:255',
+        'category' => 'required|exists:categories,id',
+       ]);
+       if(Quiz::where('name', $request->quiz)->exists()){
+        return back()
+            ->withErrors(['quiz' => 'Quiz already exists'])
+            ->withInput();
+       }
+       if(!Category::where('id', $request->category)->exists()){
+        return back()
+            ->withErrors(['category' => 'Category not found'])
+            ->withInput();
+       }
+       $name = $request->quiz;
+       $category_id = $request->category;
+       if($name && $category_id && !Session::has('quiz')){
+        $quiz = new Quiz();
+        $quiz->name = $name;
+        $quiz->category_id = $category_id;
+        $quiz->save();
+        if($quiz->save()){
+           Session::put('quiz',$quiz);
+           return redirect()->route('quizUi');
+        }
+       }
+
     }
 }
