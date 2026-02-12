@@ -40,4 +40,6 @@ Route::post('/editQuestion', [AdminController::class, 'EditQuestions'])
     ->name('EditQuestions');
     Route::delete('/questions/{id}', [AdminController::class, 'deleteQuestion'])->name('deleteQuestion');
 
+Route::get('/home', [App\Http\Controllers\UserController::class, 'displayTopics'])->name('home');
+
 
