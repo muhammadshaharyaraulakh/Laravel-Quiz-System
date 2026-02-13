@@ -44,6 +44,6 @@ Route::get('/home', [App\Http\Controllers\UserController::class, 'displayTopics'
 
 Route::get('/quizzes/{id}', [App\Http\Controllers\UserController::class, 'displayQuizzes'])->name('quizzes');
 
-Route::get('/categories', [App\Http\Controllers\UserController::class, 'displayCategories'])->name('categories');
+Route::get('/allcategories', [App\Http\Controllers\UserController::class, 'displayCategories'])->name('categories');
 
 
