@@ -1,9 +1,8 @@
- <x-header 
+ <x-header
  title="Login"
 />
 <body class="bg-slate-50 flex items-center justify-center min-h-screen px-4 py-8">
 
-    <div class="w-full max-w-sm  overflow-hidden">
 
     <div class="w-full max-w-sm bg-white rounded-2xl shadow-sm overflow-hidden border border-slate-100">
 
@@ -12,7 +11,7 @@
             <p class="text-center text-slate-500 text-sm mt-2">Enter your details to sign in</p>
         </div>
 
-        <form method="POST"  class="px-8 pb-8 space-y-5">
+        <form method="POST" action="{{ route('Login') }}" class="px-8 pb-8 space-y-5">
             @csrf
 
             <div>
@@ -32,7 +31,7 @@
             </div>
 
             <div class="text-right mt-1">
-                <a href="" class="text-xs font-medium text-indigo-600 hover:text-indigo-500 transition-colors">
+                <a href="{{ route('ForgotPassword') }}" class="text-xs font-medium text-indigo-600 hover:text-indigo-500 transition-colors">
                     Forgot password?
                 </a>
             </div>
@@ -45,7 +44,7 @@
 
         <div class="px-8 py-4 bg-slate-50 border-t border-slate-100 text-center">
             <p class="text-xs text-slate-500">
-                Don't have an account? <a href="" class="text-indigo-600 font-medium hover:underline">Sign up</a>
+                Don't have an account? <a href="{{ route('register') }}" class="text-indigo-600 font-medium hover:underline">Sign up</a>
             </p>
         </div>
 

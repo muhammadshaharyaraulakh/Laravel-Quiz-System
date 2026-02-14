@@ -11,12 +11,11 @@
         </p>
     </div>
 
-    <form method="POST" action="{{ route('password.update') }}" class="px-8 pb-8 space-y-5">
+    <form method="POST" action="{{ route('reset') }}" class="px-8 pb-8 space-y-5">
         @csrf
 
         <input type="hidden" name="token" value="{{ $token }}">
-        <input type="hidden" name="email" value="{{ request()->email }}">
-
+        <input type="hidden" name="email" value="{{ $email }}">
         <div>
             <label class="block text-sm font-medium text-slate-700 mb-1.5">
                 New Password

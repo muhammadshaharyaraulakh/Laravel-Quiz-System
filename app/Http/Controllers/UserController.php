@@ -21,8 +21,8 @@ class UserController extends Controller
         return view('userPages.quizzes', ['quizzes' => $quizzes]);
     }
     function displayCategories(){
-    $categories = Category::paginate(6);
-    return view('userPages.categories', compact('categories'));
+    $categories = Category::paginate(5);
+    return view('userPages.allcategories', compact('categories'));
 }
 
     

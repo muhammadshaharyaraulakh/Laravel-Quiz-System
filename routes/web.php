@@ -2,10 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-
+use App\Http\Controllers\UserController;
+require __DIR__.'/auth.php';
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/home',function(){
+    return view('home'); 
+})->name('home');
 Route::get('/login', function () {
     return view('login');
 })->name('login');
@@ -44,28 +48,7 @@ Route::get('/home', [App\Http\Controllers\UserController::class, 'displayTopics'
 
 Route::get('/quizzes/{id}', [App\Http\Controllers\UserController::class, 'displayQuizzes'])->name('quizzes');
 
-Route::get('/allcategories', [App\Http\Controllers\UserController::class, 'displayCategories'])->name('categories');
+Route::get('/allcategories', [App\Http\Controllers\UserController::class, 'displayCategories'])->name('allcategories');
 
 
-Route::view('/userLogin','authentication.login');
-Route::get('/Register',function(){
-    return view('authentication.signup');
-});
-Route::post('/Register', [App\Http\Controllers\UserController::class, 'register'])->name('register');
-// Show forgot password form
-Route::get('/forgot-password', function () {
-    return view('authentication.forgotPassword');
-})->name('password.request');
 
-// Handle email submit
-Route::post('/forgot-password', [App\Http\Controllers\UserController::class, 'sendResetLink'])
-    ->name('password.email');
-
-// Show reset form (IMPORTANT: token required)
-Route::get('/reset-password/{token}', function ($token) {
-    return view('authentication.resetPassword', ['token' => $token]);
-})->name('password.reset');
-
-// Handle reset submit
-Route::post('/reset-password', [App\Http\Controllers\UserController::class, 'updatePassword'])
-    ->name('password.update');

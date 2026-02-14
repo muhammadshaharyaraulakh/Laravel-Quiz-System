@@ -1,45 +1,12 @@
-
+ <x-header 
+ title="Quiz Master"
+/>
 <body class="bg-slate-50 text-slate-800 antialiased selection:bg-indigo-500 selection:text-white">
 
-    <nav class="sticky top-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16 items-center">
-                 <div class="flex items-center cursor-pointer">
-                        <span class="font-bold text-xl tracking-tight text-gray-900">Quiz<span class="text-indigo-600"> System</span></span>
+<x-navbar />
 
-                </div>
 
-                <div class="hidden md:flex space-x-8 items-center">
-                    <a href="#" class="text-slate-600 hover:text-indigo-600 font-medium transition-colors duration-200">home</a>
-                    <a href="#" class="text-slate-600 hover:text-indigo-600 font-medium transition-colors duration-200">Leaderboard</a>
-                    <a href="#" class="text-slate-600 hover:text-indigo-600 font-medium transition-colors duration-200">History</a>
-                    <button class="flex items-center gap-2 bg-slate-100 hover:bg-slate-200 text-slate-900 px-4 py-2 rounded-full transition-all duration-300 hover:shadow-md group">
-                        <span class="text-sm font-semibold">Shaharyar</span>
-                        <div class="w-8 h-8 bg-indigo-100 rounded-full flex items-center justify-center text-indigo-600 group-hover:bg-white transition-colors">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg>
-                        </div>
-                    </button>
-                </div>
-
-                <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-indigo-600 focus:outline-none transition-transform active:scale-95">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 animate-fade-in-down">
-            <div class="px-4 pt-2 pb-4 space-y-1 shadow-lg">
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">Dashboard</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">Leaderboard</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-indigo-600 hover:bg-indigo-50 transition-colors">History</a>
-                <a href="#" class="block px-3 py-2 rounded-md text-base font-medium text-indigo-600 bg-indigo-50 mt-2">My Profile</a>
-            </div>
-        </div>
-    </nav>
-
-    <section class="relative bg-white pt-16 pb-20 px-4 sm:px-6 lg:px-8 border-b border-slate-200 overflow-hidden">
+    <section class="relative bg-white pt-24 pb-28 px-4 sm:px-6 lg:px-8 border-b border-slate-200 overflow-hidden">
         <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full max-w-7xl pointer-events-none opacity-40">
             <div class="absolute top-10 left-10 w-72 h-72 bg-purple-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse"></div>
             <div class="absolute top-10 right-10 w-72 h-72 bg-indigo-300 rounded-full mix-blend-multiply filter blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
@@ -59,7 +26,7 @@
                 </div>
                 <input type="text" 
                     class="block w-full pl-12 pr-4 py-4 border-2 border-slate-200 rounded-2xl leading-5 bg-white placeholder-slate-400 focus:outline-none focus:border-indigo-500 focus:ring-4 focus:ring-indigo-500/20 sm:text-lg shadow-lg transition-all duration-300 hover:border-slate-300" 
-                    placeholder="Search for Python, History, or General Knowledge...">
+                    placeholder="Search for Coding Related Quiz">
                 <div class="absolute inset-y-0 right-3 flex items-center">
                     <button class="bg-indigo-600 hover:bg-indigo-700 text-white p-2 rounded-xl transition-transform hover:scale-105 active:scale-95 shadow-md">
                         <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
@@ -67,11 +34,13 @@
                 </div>
             </div>
             
-            <div class="mt-6 flex flex-wrap justify-center gap-2">
+            <div class="mt-9 flex flex-wrap justify-center gap-2">
                 <span class="text-sm text-slate-500 mr-2 py-1">Trending:</span>
-                <button class="px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-600 hover:bg-indigo-100 hover:text-indigo-700 transition-colors">#Technology</button>
-                <button class="px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-600 hover:bg-purple-100 hover:text-purple-700 transition-colors">#Science</button>
-                <button class="px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-600 hover:bg-pink-100 hover:text-pink-700 transition-colors">#History</button>
+               <a href="{{route('quizzes', $categories[0]->id)}}"><button class="cursor-pointer px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-600 hover:bg-indigo-100 hover:text-indigo-700 transition-colors">#Python</button></a> 
+             <a href="{{route('quizzes', $categories[1]->id)}}"><button class="cursor-pointer
+ px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-600 hover:bg-purple-100 hover:text-purple-700 transition-colors">#JavaScript</button></a>
+                <a href="{{route('quizzes', $categories[2]->id)}}"><button class="cursor-pointer
+ px-3 py-1 text-xs font-semibold rounded-full bg-slate-100 text-slate-600 hover:bg-pink-100 hover:text-pink-700 transition-colors">#Java</button></a>
             </div>
         </div>
     </section>
@@ -79,7 +48,7 @@
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         <div class="flex items-center justify-between mb-8">
             <h2 class="text-2xl font-bold text-slate-900 border-l-4 border-indigo-500 pl-3">Browse Categories</h2>
-            <a href="{{route('categories')}}" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center gap-1 transition-colors group">
+            <a href="{{route('allcategories')}}" class="text-indigo-600 font-medium hover:text-indigo-800 flex items-center gap-1 transition-colors group">
                 View All 
                 <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
             </a>
@@ -201,55 +170,4 @@
 </div>
 
     </main>
-
-    <footer class="bg-slate-900 text-slate-300 py-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-                <div class="col-span-1 md:col-span-1">
-                    <div class="flex items-center gap-2 mb-4">
-                         <div class="w-8 h-8 bg-gradient-to-tr from-indigo-600 to-purple-500 rounded-lg flex items-center justify-center text-white font-bold text-lg">Q</div>
-                         <span class="text-white font-bold text-xl">Quiz System</span>
-                    </div>
-                    <p class="text-sm text-slate-400">The best platform to test your knowledge and challenge your friends.</p>
-                </div>
-                
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Platform</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">About Us</a></li>
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Pricing</a></li>
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">For Teachers</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Support</h4>
-                    <ul class="space-y-2 text-sm">
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Help Center</a></li>
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Terms of Service</a></li>
-                        <li><a href="#" class="hover:text-indigo-400 transition-colors">Privacy Policy</a></li>
-                    </ul>
-                </div>
-
-                <div>
-                    <h4 class="text-white font-semibold mb-4">Subscribe</h4>
-                    <div class="flex gap-2">
-                        <input type="email" placeholder="Email address" class="bg-slate-800 border-none rounded px-3 py-2 text-sm w-full focus:ring-2 focus:ring-indigo-500 text-white">
-                        <button class="bg-indigo-600 hover:bg-indigo-700 text-white px-3 py-2 rounded text-sm transition-colors">Join</button>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </footer>
-
-    <script>
-        const btn = document.getElementById('mobile-menu-btn');
-        const menu = document.getElementById('mobile-menu');
-
-        btn.addEventListener('click', () => {
-            menu.classList.toggle('hidden');
-        });
-    </script>
-</body>
-</html>
+<x-footer />
