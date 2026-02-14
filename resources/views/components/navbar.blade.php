@@ -13,7 +13,7 @@
                 <a href="#" class="text-slate-600 hover:text-indigo-600 font-medium transition-colors duration-200">Result</a>
 
                 @if(!session()->has('user_id'))
-                    <a href="{{ route('Login') }}" class="text-slate-600 hover:text-indigo-600 font-medium transition-colors duration-200">Login</a>
+                    <a href="{{ route('UserLogin') }}" class="text-slate-600 hover:text-indigo-600 font-medium transition-colors duration-200">Login</a>
                     <a href="{{ route('register') }}" class="text-slate-600 hover:text-indigo-600 font-medium transition-colors duration-200">Register</a>
                 @endif
 
@@ -47,7 +47,7 @@
         <a href="{{ route('allcategories') }}" class="block text-slate-600 hover:text-indigo-600">Quiz Categories</a>
         <a href="#" class="block text-slate-600 hover:text-indigo-600">Result</a>
         @if(!session()->has('user_id'))
-            <a href="{{ route('Login') }}" class="block text-slate-600 hover:text-indigo-600">Login</a>
+            <a href="{{ route('UserLogin') }}" class="block text-slate-600 hover:text-indigo-600">Login</a>
             <a href="{{ route('register') }}" class="block text-slate-600 hover:text-indigo-600">Register</a>
         @endif
         @if(session()->has('user_id'))

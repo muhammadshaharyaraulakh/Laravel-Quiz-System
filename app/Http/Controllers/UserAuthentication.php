@@ -47,37 +47,24 @@ class UserAuthentication extends Controller
             return back()->withErrors(['email' => 'Invalid email or password.']);
         }
     }
+public function forgotPassword(Request $request)
+{
+    $request->validate([
+        'email' => 'required|email|exists:users,email',
+    ]);
 
-    public function forgotPassword(Request $request)
-    {
+    $user = User::where('email', $request->email)->first();
 
-        $request->validate([
-            'email' => 'required|email|exists:users,email',
-        ]);
+    if ($user) {
+        $token = Password::createToken($user);
 
-        $user = User::where('email', $request->email)->first();
+        $resetUrl = URL::to('/resetPassword/'.$token.'/'.urlencode($user->email));
 
-        if ($user) {
-
-            $token = Password::createToken($user);
-
-          $resetUrl = URL::to('/resetPassword/'.$token.'/'.urlencode($user->email));
-            Mail::raw("Hello {$user->name},
-
-You requested a password reset. Click the link below to reset your password:
-
-$resetUrl
-
-If you did not request this, no further action is required.
-
-Thank you.", function ($message) use ($user) {
-                $message->to($user->email)
-                    ->subject('Password Reset Link');
-            });
-        }
-
-        return back()->with('status', 'Password reset link has been sent to your email.');
+        Mail::to($user->email)->send(new \App\Mail\ResetPasswordMail($user, $resetUrl));
     }
+
+    return back()->with('status', 'Password reset link has been sent to your email.');
+}
     public function resetPassword(Request $request)
     {
         $request->validate([
