@@ -77,15 +77,15 @@
               <span class="block text-xs text-gray-500 font-normal mt-1">Created: {{ $quiz->created_at->format('d M Y') }}</span>
             </td>
             <td class="px-6 py-4 text-center">
-               <form method="POST"  class="inline-block ml-2">
-        @csrf
+        <a href="{{ route('quiz.attempt', ['quiz' => $quiz->id]) }}" class="text-blue-600 hover:text-blue-800">
         <button
             class="bg-blue-600 text-white px-4 py-1.5 rounded-lg shadow-sm
                    hover:bg-blue-700 hover:shadow-md
                    transition duration-200 ease-in-out cursor-pointer text-sm font-medium">
             Attempt
         </button>
-    </form>
+        </a>
+
 </td>
 
           </tr>

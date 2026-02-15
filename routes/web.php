@@ -51,4 +51,10 @@ Route::get('/quizzes/{id}', [App\Http\Controllers\UserController::class, 'displa
 Route::get('/allcategories', [App\Http\Controllers\UserController::class, 'displayCategories'])->name('allcategories');
 
 
+Route::get('/quiz/attempt/{quiz}', [App\Http\Controllers\UserController::class, 'attemptQuiz'])->name('quiz.attempt');
+Route::post('/quiz/{quiz}/submit', [UserController::class, 'submit'])
+    ->name('quiz.submit');
 
+    Route::get('/results', function () {
+    return view('userPages.results');
+})->name('results');
