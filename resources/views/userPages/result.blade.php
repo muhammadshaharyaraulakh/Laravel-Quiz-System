@@ -40,9 +40,9 @@
             @endphp
 
             @if($percentage >= $passPercentage)
-                <p class="text-green-600 text-lg font-semibold">🎉 Congratulations! You passed the quiz.</p>
+                <p class="text-green-600 text-lg font-semibold"> Congratulations! You passed the quiz.</p>
             @else
-                <p class="text-red-600 text-lg font-semibold">❌ You did not pass. Better luck next time!</p>
+                <p class="text-red-600 text-lg font-semibold"> You did not pass. Better luck next time!</p>
             @endif
         </div>
 

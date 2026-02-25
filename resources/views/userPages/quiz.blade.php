@@ -83,59 +83,22 @@
             </div>
         </div>
         @endforeach
+<form id="quizForm" method="POST" 
+      action="{{ route('quiz.submit', $questions->first()->quiz_id) }}">
+    @csrf
 
-        <div class="text-center pt-6">
-            <button type="button"
-                    onclick="confirmSubmit()"
-                    class="px-10 py-4 bg-indigo-600 text-white font-semibold rounded-2xl shadow-lg hover:bg-indigo-700 transition transform hover:scale-105 active:scale-95">
-                Submit Quiz
-            </button>
-        </div>
+    <div class="text-center pt-6">
+        <button type="submit"
+                class="px-10 py-4 bg-indigo-600 text-white font-semibold rounded-2xl shadow-lg hover:bg-indigo-700 transition transform hover:scale-105 active:scale-95">
+            Submit Quiz
+        </button>
+    </div>
+</form>
 
     </form>
 </main>
 
-<script>
-    let timeRemaining = 15 * 60;
-    const timer = document.getElementById("timer");
-    const timerBox = document.getElementById("timerBox");
-    const form = document.getElementById("quizForm");
-    let submitted = false;
 
-    const countdown = setInterval(() => {
-
-        const minutes = Math.floor(timeRemaining / 60);
-        let seconds = timeRemaining % 60;
-        seconds = seconds < 10 ? '0' + seconds : seconds;
-        timer.innerText = `${minutes}:${seconds}`;
-
-        if (timeRemaining <= 60) {
-            timer.classList.remove("text-indigo-700");
-            timer.classList.add("text-red-600");
-            timerBox.classList.add("border-red-200");
-        }
-
-        if (timeRemaining === 0) {
-            clearInterval(countdown);
-            if (!submitted) {
-                submitted = true;
-                form.submit();
-            }
-        }
-
-        timeRemaining--;
-
-    }, 1000);
-
-function confirmSubmit() {
-    if(confirm("Are you sure you want to submit your answers?")) {
-        // Submit the form
-        document.getElementById('quizForm').submit();
-    }
-}
-
-
-</script>
 
 </body>
 </html>

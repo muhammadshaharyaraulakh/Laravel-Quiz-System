@@ -45,4 +45,14 @@ class User extends Authenticatable
             'password' => 'hashed',
         ];
     }
+     public function results()
+    {
+        return $this->hasMany(Result::class);
+    }
+
+   
+    public function resultForQuiz($quizId)
+    {
+        return $this->hasOne(Result::class)->where('quiz_id', $quizId);
+    }
 }

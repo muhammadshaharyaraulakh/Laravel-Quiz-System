@@ -55,6 +55,5 @@ Route::get('/quiz/attempt/{quiz}', [App\Http\Controllers\UserController::class, 
 Route::post('/quiz/{quiz}/submit', [UserController::class, 'submit'])
     ->name('quiz.submit');
 
-    Route::get('/results', function () {
-    return view('userPages.results');
-})->name('results');
+Route::get('/results/{quiz}', [QuizController::class, 'showResult'])->name('results');
+Route::get('/results/{quiz}', [UserController::class, 'showResult'])->name('results');

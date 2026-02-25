@@ -76,16 +76,34 @@
               {{ $quiz->name }}
               <span class="block text-xs text-gray-500 font-normal mt-1">Created: {{ $quiz->created_at->format('d M Y') }}</span>
             </td>
-            <td class="px-6 py-4 text-center">
-        <a href="{{ route('quiz.attempt', ['quiz' => $quiz->id]) }}" class="text-blue-600 hover:text-blue-800">
+         <td class="px-6 py-4 text-center flex justify-center gap-2">
+    @if($quiz->results->isNotEmpty())
         <button
-            class="bg-blue-600 text-white px-4 py-1.5 rounded-lg shadow-sm
-                   hover:bg-blue-700 hover:shadow-md
-                   transition duration-200 ease-in-out cursor-pointer text-sm font-medium">
-            Attempt
+            class="bg-gray-400 text-white px-4 py-1.5 rounded-lg shadow-sm
+                   cursor-not-allowed text-sm font-medium">
+            Attempted
         </button>
-        </a>
 
+        <!-- Result button (link placeholder) -->
+        <a href="{{ route('results', ['quiz' => $quiz->id]) }}" class="text-blue-600 hover:text-blue-800">
+            <button
+                class="bg-blue-600 text-white px-4 py-1.5 rounded-lg shadow-sm
+                       hover:bg-blue-700 hover:shadow-md
+                       transition duration-200 ease-in-out cursor-pointer text-sm font-medium">
+                Result
+            </button>
+        </a>
+    @else
+        <!-- Attempt button for quizzes not attempted -->
+        <a href="{{ route('quiz.attempt', ['quiz' => $quiz->id]) }}" class="text-blue-600 hover:text-blue-800">
+            <button
+                class="bg-blue-600 text-white px-4 py-1.5 rounded-lg shadow-sm
+                       hover:bg-blue-700 hover:shadow-md
+                       transition duration-200 ease-in-out cursor-pointer text-sm font-medium">
+                Attempt
+            </button>
+        </a>
+    @endif
 </td>
 
           </tr>
@@ -94,6 +112,9 @@
 @endif
         </tbody>
       </table>
+
+    
+
     </div>
   </div>
 </section>

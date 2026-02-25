@@ -17,10 +17,22 @@ class UserController extends Controller
        $categroies = Category::all();
        return view('home', ['categories' => $categroies]);
     }
-    function displayQuizzes($id){
-        $quizzes = Quiz::where('category_id', $id)->get();
-        return view('userPages.quizzes', ['quizzes' => $quizzes]);
-    }
+   public function displayQuizzes($categoryId)
+{
+    $userId = session('user_id'); 
+
+
+    $quizzes = Quiz::with(['results' => function($query) use ($userId) {
+        $query->where('user_id', $userId);
+    }])
+    ->where('category_id', $categoryId)
+    ->get();
+
+    return view('userPages.quizzes', [
+        'quizzes' => $quizzes,
+        'userId' => $userId
+    ]);
+}
     function displayCategories(){
     $categories = Category::paginate(5);
     return view('userPages.allcategories', compact('categories'));
@@ -34,16 +46,26 @@ class UserController extends Controller
 
 public function submit(Request $request, $quizId)
 {
-    $questions = Mcq::where('quiz_id', $quizId)->get();
+    $userId = session('user_id');
 
+    // Check if the result already exists
+    $existingResult = Result::where('quiz_id', $quizId)
+                            ->where('user_id', $userId)
+                            ->first();
+
+    if ($existingResult) {
+        // User has already attempted → redirect to results page
+        return redirect()->route('results', ['quiz' => $quizId]);
+    }
+
+    // Fetch questions
+    $questions = Mcq::where('quiz_id', $quizId)->get();
     $score = 0;
     $total = $questions->count();
 
     foreach ($questions as $question) {
         if (isset($request->answers[$question->id])) {
             $selected = $request->answers[$question->id];
-            
-            // Compare DB stored answer with selected value
             if ($question->answer === $selected) {
                 $score++;
             }
@@ -52,20 +74,31 @@ public function submit(Request $request, $quizId)
 
     $percentage = ($score / $total) * 100;
 
-
-
- 
-            
-   
+    // Save result
     Result::create([
-        'user_id' => Session::get('user_id'), // Assuming you have user authentication and store user_id in session
+        'user_id' => $userId,
         'quiz_id' => $quizId,
         'score' => $score,
         'total' => $total,
         'percentage' => $percentage
     ]);
 
-    return view('userPages.result', compact('score', 'total', 'percentage'));
-
+    // Redirect to the results page instead of returning view
+    return redirect()->route('results', ['quiz' => $quizId]);
 }
+public function showResult($quizId)
+{
+    $userId = session('user_id');
+
+    $result = Result::where('quiz_id', $quizId)
+                    ->where('user_id', $userId)
+                    ->firstOrFail();
+
+    return view('userPages.result', [
+        'score' => $result->score,
+        'total' => $result->total,
+        'percentage' => $result->percentage
+    ]);
+}
+
 }
